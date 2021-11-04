@@ -1,17 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}. When #{title} saves #{title}.
-  
-  button(type="button", class="btn btn-success" onclick="update()") Press Me
-  br    
-  
-  br
-  div(id="target") Display 
-   script.
-    var client_count=0
-    function update(){
-     client_count++;
-     document.getElementById("target").innerHTML=`value now ${client_count}`
-     }
+  div(class="container-fluid")
+    h1= title
+  - let results=[{breed:"golden retriever",colour:"white",maxheight:3.7},{breed:"pit bull",colour:"black",minheight:3.5},{breed:"rotweiler",colour:"brown",minheight:3.0}] 
+    div(class="row")
+      each form,index in results
+        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.breed}
+        br
+        br
+        br
+        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.colour}
+        br
+        br
+        br
+        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.minheight}
+    script.
+     
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }
